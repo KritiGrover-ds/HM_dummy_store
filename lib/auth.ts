@@ -1,5 +1,5 @@
 import "server-only";
-import { createHmac, timingSafeEqual } from "crypto";
+import { createHash, createHmac, timingSafeEqual } from "crypto";
 import { cookies } from "next/headers";
 import { getUserById } from "./db";
 import type { User } from "@/types/store";
@@ -14,7 +14,13 @@ export { hashPassword, verifyPassword } from "./password";
 
 export const SESSION_COOKIE = "hm_session";
 const SESSION_TTL_SECONDS = 60 * 60 * 24 * 30; // 30 days
-const SECRET = process.env.AUTH_SECRET || "hm-india-dev-secret-change-me-in-production";
+// AUTH_SECRET if set; otherwise derived from the (private) REDIS_URL so a hosted
+// deployment never falls back to the public default secret.
+const SECRET =
+  process.env.AUTH_SECRET ||
+  (process.env.REDIS_URL
+    ? createHash("sha256").update(`linea-session:${process.env.REDIS_URL}`).digest("hex")
+    : "linea-dev-secret-change-me-in-production");
 
 function base64url(input: Buffer | string): string {
   return Buffer.from(input).toString("base64url");
