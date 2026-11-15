@@ -345,9 +345,15 @@ export const ALLOWED_CLIENT_EVENTS: CustomerEventType[] = [
   "checkout_started",
 ];
 
-const STREAM_MAXLEN = 100000;
-const LIST_MAXLEN = 50000;
-const SESSION_LIST_MAXLEN = 2000;
+// Caps keep telemetry bounded. Override on small hosted Redis plans (e.g. 30 MB free tier):
+//   TELEMETRY_STREAM_MAXLEN=5000  TELEMETRY_LIST_MAXLEN=2000
+const envInt = (name: string, fallback: number) => {
+  const n = parseInt(process.env[name] ?? "", 10);
+  return Number.isFinite(n) && n > 0 ? n : fallback;
+};
+const STREAM_MAXLEN = envInt("TELEMETRY_STREAM_MAXLEN", 100000);
+const LIST_MAXLEN = envInt("TELEMETRY_LIST_MAXLEN", 50000);
+const SESSION_LIST_MAXLEN = envInt("TELEMETRY_SESSION_MAXLEN", 2000);
 
 /**
  * Silently records one shopper interaction:
