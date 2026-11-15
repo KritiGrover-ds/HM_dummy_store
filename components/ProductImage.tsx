@@ -3,17 +3,17 @@
 import { useEffect, useMemo, useState } from "react";
 
 /**
- * Clean H&M studio lookbook placeholder (inline SVG data URI) – shown only when
+ * Clean LINEA studio lookbook placeholder (inline SVG data URI) – shown only when
  * every real photo URL fails (offline, blocked hotlink, slow CDN).
  */
-export function studioPlaceholder(label = "H&M", colorHex = "#e9e6e1"): string {
+export function studioPlaceholder(label = "LINEA", colorHex = "#e9e6e1"): string {
   const safeLabel = label.replace(/[<>&"]/g, "").slice(0, 40);
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
   <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f2ef"/><stop offset="1" stop-color="#e7e3dd"/></linearGradient></defs>
   <rect width="600" height="800" fill="url(#g)"/>
   <path d="M220 170 L170 200 L110 330 L165 355 L200 290 L200 640 L400 640 L400 290 L435 355 L490 330 L430 200 L380 170 Q300 230 220 170 Z" fill="${colorHex}" opacity="0.92" stroke="#00000014" stroke-width="3"/>
   <text x="300" y="715" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#555" text-anchor="middle">${safeLabel}</text>
-  <text x="300" y="100" font-family="Georgia, serif" font-weight="700" font-size="44" fill="#E50010" text-anchor="middle">H&amp;M</text>
+  <text x="300" y="100" font-family="Helvetica, Arial, sans-serif" font-weight="300" font-size="40" letter-spacing="12" fill="#111" text-anchor="middle">LINEA</text>
 </svg>`;
   return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
 }
@@ -31,7 +31,7 @@ interface ProductImageProps {
 }
 
 /**
- * Real-photo renderer: plain <img> (no next/image domain whitelist), H&M 3:4
+ * Real-photo renderer: plain <img> (no next/image domain whitelist), LINEA 3:4
  * portrait crop, hover lookbook angle, and a chained onError fallback.
  */
 export default function ProductImage({

@@ -1,6 +1,6 @@
 import ProfileClient from "./ProfileClient";
 
-export const metadata = { title: "My account | H&M India" };
+export const metadata = { title: "My account | LINEA India" };
 
 const TABS = ["profile", "orders", "favourites", "rewards"] as const;
 export type ProfileTab = (typeof TABS)[number];

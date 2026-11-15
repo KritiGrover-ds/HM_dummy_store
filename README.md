@@ -1,11 +1,11 @@
-# H&M India Clone — Next.js 15 + Redis (`ioredis`)
+# LINEA India — fashion store demo (Next.js 15 + Redis `ioredis`)
 
-A full-stack demo of the H&M India store (`hm.com/en_in`), with Redis as the only database.
+A full-stack fashion e-commerce demo modelled on large Indian fashion retail sites, with Redis as the only database. LINEA is a fictional brand created for a student project.
 
-- **66 products** across Ladies, Men, Kids, Baby, H&M HOME and Sport (₹499–₹4,999). Every product has several colours and a full size matrix.
+- **66 products** across Ladies, Men, Kids, Baby, LINEA HOME and Sport (₹499–₹4,999). Every product has several colours and a full size matrix.
 - **Atomic stock deduction.** One Lua script checks and decrements every bag line together, so an order either fully succeeds or touches nothing (`409` with the item, colour, size and remaining stock).
 - **Live stock in every open tab.** Redis Pub/Sub → `EventEmitter` → Server-Sent Events (`/api/inventory/stream`). Bags clamp themselves when someone else buys the last piece.
-- **H&M Member accounts.** Uses only the built-in `crypto` module (scrypt + HMAC-signed `hm_session` cookie), so there is no native bcrypt to compile on Windows. Includes points (1 per ₹50), Member Plus at 800 pts, favourites, saved sizes and an Indian address.
+- **LINEA Member accounts.** Uses only the built-in `crypto` module (scrypt + HMAC-signed `hm_session` cookie), so there is no native bcrypt to compile on Windows. Includes points (1 per ₹50), Member Plus at 800 pts, favourites, saved sizes and an Indian address.
 - **Silent ML telemetry.** Events go to Redis Stream `hm:telemetry:stream`, List `hm:telemetry:events`, per-session lists and the per-user feature hash `hm:user:{id}:metrics`. None of it is shown in the customer UI.
 
 ---
@@ -34,18 +34,40 @@ Pick one option:
 
 Check it with `redis-cli ping` → `PONG`.
 
+### Redis inside WSL (Windows) – fixing `ECONNREFUSED 127.0.0.1:6379`
+
+The app runs on Windows, Redis runs inside the WSL2 virtual machine. WSL's
+"localhost forwarding" is supposed to connect the two, but it often stops
+working (after sleep, `wsl --shutdown`, VPNs). The app now detects this and
+automatically retries Redis at WSL's own IP (`wsl hostname -I`). For that to
+work, Redis in WSL must accept connections from Windows – run once in WSL:
+
+```bash
+sudo sed -i 's/^bind .*/bind 0.0.0.0/' /etc/redis/redis.conf
+sudo sed -i 's/^protected-mode yes/protected-mode no/' /etc/redis/redis.conf
+sudo service redis-server restart
+```
+
+(WSL's network is only reachable from your own PC, so this is fine for local
+development. Alternatively set `REDIS_URL=redis://<WSL-IP>:6379` in
+`.env.local`, or enable `networkingMode=mirrored` under `[wsl2]` in
+`%UserProfile%\.wslconfig` and run `wsl --shutdown`.)
+
+Check from PowerShell: `Test-NetConnection 127.0.0.1 -Port 6379` – if
+`TcpTestSucceeded : False`, Windows can't see WSL's Redis on localhost and the
+fix above is needed.
+
 ## 3. Run the store
 
 ```bash
 npm install
-# Optional – defaults already point to redis://127.0.0.1:6379.
-# To customise, rename env.example.txt to .env.local and edit it.
+copy .env.local.example .env.local    # Windows  (macOS/Linux: cp .env.local.example .env.local)
 npm run dev
 ```
 
 Open http://localhost:3000. The catalog **auto-seeds on first request** (when `SCARD hm:products:all` is 0). The **"Reset / Re-seed 60+ Demo Inventory"** link in the top bar restocks everything at any time (`POST /api/seed`).
 
-**Demo member:** `member@hm.com` / `hmindia2026`. The login page has a 1-click button for it.
+**Demo member:** `member@linea.demo` / `hmindia2026`. The login page has a 1-click button for it.
 
 Production build: `npm run build && npm start`.
 
@@ -78,7 +100,13 @@ Production build: `npm run build && npm start`.
 
 To export telemetry for model training, run `redis-cli XRANGE hm:telemetry:stream - +` or `redis-cli HGETALL hm:user:usr_demo_member:metrics`.
 
-## 6. Project structure
+## 6. Live deployment (Vercel + Redis Cloud)
+
+- The whole app (pages + API routes) is deployed on **Vercel** from the GitHub repo – no separate backend host needed.
+- The database is a free **Redis Cloud** database. Vercel's environment variables hold `REDIS_URL` (`redis://default:<password>@<host>:<port>`) and `AUTH_SECRET`.
+- The catalog seeds itself on the first request. Every push to `main` redeploys automatically.
+
+## 7. Project structure
 
 ```
 app/
@@ -86,7 +114,7 @@ app/
   shop/                        Multi-filter catalog (department, subcategory, size, colour, price, sale, stock, sort, load more)
   products/[slug]/             Multi-photo PDP, colour swatches, live size matrix, size guide, accordions
   checkout/                    Simulated instant checkout (auto-fill, delivery choice, member promo)
-  orders/[id]/                 Itemised H&M India tax invoice
+  orders/[id]/                 Itemised LINEA India tax invoice
   login/ register/ profile/ favourites/ sustainability/
   api/                         seed, products, products/[slug], inventory/stream, orders, orders/[id],
                                auth/{register,login,logout,me}, profile, profile/wishlist,
@@ -107,6 +135,6 @@ types/store.ts                 Shared TypeScript interfaces
 
 ## Notes
 
-- Product photos use plain `<img>` tags, with real H&M CDN and Unsplash URLs. If a URL fails (offline, hotlink blocked), the next photo is tried, and finally a clean H&M studio placeholder is drawn, so no broken-image icons appear.
+- Product photos use plain `<img>` tags, with real LINEA CDN and Unsplash URLs. If a URL fails (offline, hotlink blocked), the next photo is tried, and finally a clean LINEA studio placeholder is drawn, so no broken-image icons appear.
 - When the machine is online, seeding also merges extra product photos from dummyjson.com and fakestoreapi.com into product galleries.
-- This is an educational demo. It is not affiliated with H & M Hennes & Mauritz AB, and payment is simulated.
+- LINEA is a fictional brand for an educational demo. Payment is simulated.

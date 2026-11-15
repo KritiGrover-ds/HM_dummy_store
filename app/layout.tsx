@@ -3,9 +3,9 @@ import "./globals.css";
 import Providers from "@/components/Providers";
 
 export const metadata: Metadata = {
-  title: "H&M India | Fashion and quality at the best price",
+  title: "LINEA India | Fashion and quality at the best price",
   description:
-    "Demo clone of the H&M India online store – Ladies, Men, Kids, Baby, H&M HOME and Sport, powered by Next.js and Redis.",
+    "Demo clone of the LINEA India online store – Ladies, Men, Kids, Baby, LINEA HOME and Sport, powered by Next.js and Redis.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

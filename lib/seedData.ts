@@ -4,31 +4,17 @@ import { hashPassword } from "./password";
 import type { Department, Product, ProductVariant, User } from "@/types/store";
 
 // ─────────────────────────────────────────────────────────────────────────────
-// H&M India demo catalog – 65 deterministic products across Ladies, Men, Kids,
-// Baby, H&M HOME and Sport, with real fashion photography URLs and realistic
+// LINEA India demo catalog – 65 deterministic products across Ladies, Men, Kids,
+// Baby, LINEA HOME and Sport, with real fashion photography URLs and realistic
 // per-colour/per-size stock seeded into Redis Hashes hm:stock:{productId}.
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const DEMO_MEMBER_EMAIL = "member@hm.com";
+export const DEMO_MEMBER_EMAIL = "member@linea.demo";
 export const DEMO_MEMBER_PASSWORD = "hmindia2026";
 export const DEMO_MEMBER_ID = "usr_demo_member";
 
 // ── Real photography ────────────────────────────────────────────────────────
 
-/** Verified H&M CDN product photos (supplied in the project brief). */
-export const HM_CDN_PHOTOS = [
-  "https://image.hm.com/assets/hm/44/41/4441a5d9fdcd08f8f20bdc053b3c56315ad3cc73.jpg",
-  "https://image.hm.com/assets/hm/06/df/06df38688f55c98a9e495f9bd134ece30f9a7dfa.jpg",
-  "https://image.hm.com/assets/hm/71/f6/71f6be8b8e84ce35f97fea1110c3e60d49682333.jpg",
-  "https://image.hm.com/assets/hm/b7/98/b798ee7ab8aab81ea7848ee44d88b6cc903f0051.jpg",
-  "https://image.hm.com/assets/hm/f3/c0/f3c0faec31fe4c47e4b7a2f3c7fe6a93849d5864.jpg",
-  "https://image.hm.com/assets/hm/8c/e3/8ce3a71d4099fabf2a0ee1c203e04de96cd0316e.jpg",
-  "https://image.hm.com/assets/hm/12/c8/12c8ecd2cc4a4cbc09e5f872b9ba29d5b0efd2a3.jpg",
-  "https://image.hm.com/assets/hm/fa/54/fa546f3726ef09738098b74056f3e6cab12678ee.jpg",
-  "https://image.hm.com/assets/hm/be/3a/be3ade6b98cf62f86cf380faf60f2548050be9f3.jpg",
-  "https://image.hm.com/assets/hm/59/a9/59a91313f507b1d8cb08f2ee1a67303aeac9c189.jpg",
-  "https://image.hm.com/assets/hm/bf/9a/bf9a30d5be82a9823f7c0215c7b602b0d23205ef.jpg",
-];
 
 /** Curated editorial Unsplash studio photography. */
 export const unsplash = (id: string, w = 900) =>
@@ -199,41 +185,40 @@ interface CatalogEntry {
   composition: string;
   isNew?: boolean;
   conscious?: boolean;
-  hmPhoto?: number; // index into HM_CDN_PHOTOS used as the first variant's primary photo
 }
 
 const CATALOG: CatalogEntry[] = [
   // ───────────── LADIES ─────────────
-  { title: "Linen-blend Wrap Dress", department: "ladies", subcategory: "Dresses", price: 2299, colors: [["Beige", "#d8c3a5"], ["Black", "#1a1a1a"], ["Sage Green", "#9caf88"]], pool: "dress", sizes: "apparel", description: "Calf-length wrap dress in an airy linen blend with a V-neck, short flutter sleeves and a tie belt at the waist.", fit: "Regular fit", composition: "Linen 55%, Viscose 45%", isNew: true, conscious: true, hmPhoto: 0 },
-  { title: "Smocked Cotton Maxi Dress", department: "ladies", subcategory: "Dresses", price: 2699, colors: [["White", "#f5f5f0"], ["Terracotta", "#c46a4a"]], pool: "dress", sizes: "apparel", description: "Long, tiered dress in soft cotton with a smocked bodice, square neckline and narrow adjustable shoulder straps.", fit: "Relaxed fit", composition: "Cotton 100%", conscious: true, hmPhoto: 1 },
+  { title: "Linen-blend Wrap Dress", department: "ladies", subcategory: "Dresses", price: 2299, colors: [["Beige", "#d8c3a5"], ["Black", "#1a1a1a"], ["Sage Green", "#9caf88"]], pool: "dress", sizes: "apparel", description: "Calf-length wrap dress in an airy linen blend with a V-neck, short flutter sleeves and a tie belt at the waist.", fit: "Regular fit", composition: "Linen 55%, Viscose 45%", isNew: true, conscious: true },
+  { title: "Smocked Cotton Maxi Dress", department: "ladies", subcategory: "Dresses", price: 2699, colors: [["White", "#f5f5f0"], ["Terracotta", "#c46a4a"]], pool: "dress", sizes: "apparel", description: "Long, tiered dress in soft cotton with a smocked bodice, square neckline and narrow adjustable shoulder straps.", fit: "Relaxed fit", composition: "Cotton 100%", conscious: true },
   { title: "Satin Slip Dress", department: "ladies", subcategory: "Dresses", price: 1999, originalPrice: 2999, colors: [["Champagne", "#e8d3b0"], ["Emerald", "#1f6f50"], ["Black", "#1a1a1a"]], pool: "dress", sizes: "apparel", description: "Midi slip dress in lustrous satin with a draped cowl neckline, thin adjustable straps and a bias-cut skirt.", fit: "Fitted at the bust", composition: "Polyester 100%" },
   { title: "Puff-sleeve Mini Dress", department: "ladies", subcategory: "Dresses", price: 1499, colors: [["Light Pink", "#f4c6cf"], ["Dark Blue", "#1f2c4c"]], pool: "dress", sizes: "apparel", description: "Short A-line dress in crisp poplin with a sweetheart neckline, puff sleeves and a concealed zip at the back.", fit: "Fitted waist", composition: "Cotton 100%", isNew: true },
   { title: "Rib-knit Bodycon Dress", department: "ladies", subcategory: "Dresses", price: 1299, colors: [["Black", "#1a1a1a"], ["Mocha", "#7a5c48"], ["Cream", "#efe6d2"]], pool: "dress", sizes: "apparel", description: "Fitted, ankle-length dress in stretchy rib-knit jersey with a round neckline and long sleeves.", fit: "Slim fit", composition: "Viscose 75%, Polyester 20%, Elastane 5%", isNew: true },
-  { title: "Fitted Cotton T-shirt", department: "ladies", subcategory: "Tops & T-shirts", price: 499, colors: [["White", "#f5f5f0"], ["Black", "#1a1a1a"], ["Grey Marl", "#9a9a9a"]], pool: "ladiesTop", sizes: "apparel", description: "Fitted T-shirt in soft cotton jersey with a round neckline and short sleeves. A wardrobe essential.", fit: "Fitted", composition: "Cotton 100%", conscious: true, hmPhoto: 2 },
+  { title: "Fitted Cotton T-shirt", department: "ladies", subcategory: "Tops & T-shirts", price: 499, colors: [["White", "#f5f5f0"], ["Black", "#1a1a1a"], ["Grey Marl", "#9a9a9a"]], pool: "ladiesTop", sizes: "apparel", description: "Fitted T-shirt in soft cotton jersey with a round neckline and short sleeves. A wardrobe essential.", fit: "Fitted", composition: "Cotton 100%", conscious: true },
   { title: "Ribbed Tank Top", department: "ladies", subcategory: "Tops & T-shirts", price: 599, colors: [["White", "#f5f5f0"], ["Khaki Green", "#6b6b47"]], pool: "ladiesTop", sizes: "apparel", description: "Fitted vest top in ribbed cotton-blend jersey with a high neckline and racer back.", fit: "Fitted", composition: "Cotton 95%, Elastane 5%" },
   { title: "Oversized Printed T-shirt", department: "ladies", subcategory: "Tops & T-shirts", price: 799, colors: [["Washed Black", "#2d2d2d"], ["Light Beige", "#e8dcc7"]], pool: "ladiesTop", sizes: "apparel", description: "Oversized T-shirt in heavyweight cotton jersey with a print motif, dropped shoulders and a ribbed neckline.", fit: "Oversized fit", composition: "Cotton 100%", isNew: true },
-  { title: "Linen-blend Shirt", department: "ladies", subcategory: "Shirts & Blouses", price: 1999, colors: [["White", "#f5f5f0"], ["Light Blue", "#b5cbe0"], ["Beige", "#d8c3a5"]], pool: "blouse", sizes: "apparel", description: "Relaxed shirt in an airy linen blend with a collar, buttons down the front and a yoke at the back.", fit: "Relaxed fit", composition: "Linen 52%, Viscose 48%", conscious: true, hmPhoto: 3 },
+  { title: "Linen-blend Shirt", department: "ladies", subcategory: "Shirts & Blouses", price: 1999, colors: [["White", "#f5f5f0"], ["Light Blue", "#b5cbe0"], ["Beige", "#d8c3a5"]], pool: "blouse", sizes: "apparel", description: "Relaxed shirt in an airy linen blend with a collar, buttons down the front and a yoke at the back.", fit: "Relaxed fit", composition: "Linen 52%, Viscose 48%", conscious: true },
   { title: "Puff-sleeve Poplin Blouse", department: "ladies", subcategory: "Shirts & Blouses", price: 1499, originalPrice: 2299, colors: [["White", "#f5f5f0"], ["Light Yellow", "#f3e7a4"]], pool: "blouse", sizes: "apparel", description: "Blouse in cotton poplin with a frilled collar, covered buttons and voluminous puff sleeves.", fit: "Regular fit", composition: "Cotton 100%" },
   { title: "Oversized Hoodie", department: "ladies", subcategory: "Sweatshirts & Hoodies", price: 1799, colors: [["Grey Marl", "#9a9a9a"], ["Dusty Pink", "#d4a5a5"], ["Black", "#1a1a1a"]], pool: "hoodie", sizes: "apparel", description: "Oversized hoodie in soft sweatshirt fabric with a lined drawstring hood, kangaroo pocket and brushed inside.", fit: "Oversized fit", composition: "Cotton 80%, Polyester 20%" },
-  { title: "Fine-knit Cardigan", department: "ladies", subcategory: "Cardigans & Knitwear", price: 1999, colors: [["Cream", "#efe6d2"], ["Dark Brown", "#4a3426"]], pool: "knit", sizes: "apparel", description: "Fitted cardigan in a fine knit with a V-neck, buttons down the front and ribbed trims.", fit: "Fitted", composition: "Viscose 50%, Polyamide 30%, Polyester 20%", hmPhoto: 4 },
+  { title: "Fine-knit Cardigan", department: "ladies", subcategory: "Cardigans & Knitwear", price: 1999, colors: [["Cream", "#efe6d2"], ["Dark Brown", "#4a3426"]], pool: "knit", sizes: "apparel", description: "Fitted cardigan in a fine knit with a V-neck, buttons down the front and ribbed trims.", fit: "Fitted", composition: "Viscose 50%, Polyamide 30%, Polyester 20%" },
   { title: "Cable-knit Jumper", department: "ladies", subcategory: "Cardigans & Knitwear", price: 2499, originalPrice: 3299, colors: [["Light Beige", "#e8dcc7"], ["Burgundy", "#6d1f2c"]], pool: "knit", sizes: "apparel", description: "Relaxed jumper in a soft cable knit with dropped shoulders and ribbing around the neckline, cuffs and hem.", fit: "Relaxed fit", composition: "Acrylic 60%, Wool 20%, Polyamide 20%" },
-  { title: "Oversized Double-breasted Blazer", department: "ladies", subcategory: "Blazers & Coats", price: 3999, colors: [["Black", "#1a1a1a"], ["Beige", "#d8c3a5"], ["Grey Check", "#8a8a8a"]], pool: "coat", sizes: "apparel", description: "Oversized double-breasted blazer in woven fabric with peak lapels, flap front pockets and padded shoulders.", fit: "Oversized fit", composition: "Polyester 66%, Viscose 30%, Elastane 4%", isNew: true, hmPhoto: 5 },
+  { title: "Oversized Double-breasted Blazer", department: "ladies", subcategory: "Blazers & Coats", price: 3999, colors: [["Black", "#1a1a1a"], ["Beige", "#d8c3a5"], ["Grey Check", "#8a8a8a"]], pool: "coat", sizes: "apparel", description: "Oversized double-breasted blazer in woven fabric with peak lapels, flap front pockets and padded shoulders.", fit: "Oversized fit", composition: "Polyester 66%, Viscose 30%, Elastane 4%", isNew: true },
   { title: "Wool-blend Coat", department: "ladies", subcategory: "Blazers & Coats", price: 3499, originalPrice: 4999, colors: [["Camel", "#b08355"], ["Black", "#1a1a1a"]], pool: "coat", sizes: "apparel", description: "Knee-length coat in a felted wool blend with notch lapels, a concealed button placket and side pockets.", fit: "Straight fit", composition: "Polyester 52%, Wool 40%, Viscose 8%" },
-  { title: "Wide High Jeans", department: "ladies", subcategory: "Jeans & Trousers", price: 2299, colors: [["Light Denim Blue", "#9db4cf"], ["Black", "#1a1a1a"]], pool: "denim", sizes: "waist", description: "5-pocket jeans in rigid cotton denim with a high waist, zip fly and wide, straight legs.", fit: "Wide leg", composition: "Cotton 100%", conscious: true, hmPhoto: 6 },
+  { title: "Wide High Jeans", department: "ladies", subcategory: "Jeans & Trousers", price: 2299, colors: [["Light Denim Blue", "#9db4cf"], ["Black", "#1a1a1a"]], pool: "denim", sizes: "waist", description: "5-pocket jeans in rigid cotton denim with a high waist, zip fly and wide, straight legs.", fit: "Wide leg", composition: "Cotton 100%", conscious: true },
   { title: "Tailored Linen-blend Trousers", department: "ladies", subcategory: "Jeans & Trousers", price: 1999, colors: [["Beige", "#d8c3a5"], ["White", "#f5f5f0"], ["Black", "#1a1a1a"]], pool: "denim", sizes: "waist", description: "Tailored trousers in a linen-blend weave with a high waist, pressed pleats and straight, wide legs.", fit: "Wide leg", composition: "Linen 55%, Viscose 45%", conscious: true },
   { title: "Satin Midi Skirt", department: "ladies", subcategory: "Skirts & Co-ords", price: 1799, colors: [["Champagne", "#e8d3b0"], ["Dark Green", "#24402f"]], pool: "skirt", sizes: "apparel", description: "Calf-length skirt in satin with a concealed elasticated waist and a gently flared, bias-cut shape.", fit: "Regular fit", composition: "Polyester 100%" },
   { title: "Linen-blend Co-ord Set", department: "ladies", subcategory: "Skirts & Co-ords", price: 2999, colors: [["Off White", "#f1ede2"], ["Rust", "#a4532f"]], pool: "skirt", sizes: "apparel", description: "Two-piece co-ord in a linen blend: a cropped short-sleeved shirt and matching wide pull-on trousers.", fit: "Relaxed fit", composition: "Linen 55%, Cotton 45%", isNew: true, conscious: true },
 
   // ───────────── MEN ─────────────
-  { title: "Loose Fit Cotton T-shirt", department: "men", subcategory: "Oversized T-shirts", price: 799, colors: [["White", "#f5f5f0"], ["Black", "#1a1a1a"], ["Dark Green", "#24402f"]], pool: "menTee", sizes: "apparel", description: "Loose-fit T-shirt in heavyweight cotton jersey with a ribbed crew neck and dropped shoulders.", fit: "Loose fit", composition: "Cotton 100%", conscious: true, hmPhoto: 7 },
+  { title: "Loose Fit Cotton T-shirt", department: "men", subcategory: "Oversized T-shirts", price: 799, colors: [["White", "#f5f5f0"], ["Black", "#1a1a1a"], ["Dark Green", "#24402f"]], pool: "menTee", sizes: "apparel", description: "Loose-fit T-shirt in heavyweight cotton jersey with a ribbed crew neck and dropped shoulders.", fit: "Loose fit", composition: "Cotton 100%", conscious: true },
   { title: "Oversized Printed T-shirt", department: "men", subcategory: "Oversized T-shirts", price: 999, colors: [["Washed Black", "#2d2d2d"], ["Cream", "#efe6d2"]], pool: "menTee", sizes: "apparel", description: "Oversized T-shirt in cotton jersey with a graphic print on the front and back.", fit: "Oversized fit", composition: "Cotton 100%", isNew: true },
   { title: "Regular Fit Crew-neck T-shirt 3-pack", department: "men", subcategory: "Oversized T-shirts", price: 1299, colors: [["White/Grey/Black", "#c8c8c8"], ["Navy/Olive/Beige", "#3a4a5c"]], pool: "menTee", sizes: "apparel", description: "Three regular-fit T-shirts in soft cotton jersey with a round neckline.", fit: "Regular fit", composition: "Cotton 100%" },
-  { title: "Regular Fit Linen Shirt", department: "men", subcategory: "Linen & Casual Shirts", price: 2299, colors: [["White", "#f5f5f0"], ["Light Blue", "#b5cbe0"], ["Beige", "#d8c3a5"]], pool: "menShirt", sizes: "apparel", description: "Regular-fit shirt in airy linen with a turn-down collar, classic front and yoke at the back.", fit: "Regular fit", composition: "Linen 100%", conscious: true, hmPhoto: 8 },
+  { title: "Regular Fit Linen Shirt", department: "men", subcategory: "Linen & Casual Shirts", price: 2299, colors: [["White", "#f5f5f0"], ["Light Blue", "#b5cbe0"], ["Beige", "#d8c3a5"]], pool: "menShirt", sizes: "apparel", description: "Regular-fit shirt in airy linen with a turn-down collar, classic front and yoke at the back.", fit: "Regular fit", composition: "Linen 100%", conscious: true },
   { title: "Relaxed Fit Resort Shirt", department: "men", subcategory: "Linen & Casual Shirts", price: 1799, originalPrice: 2499, colors: [["Black Floral", "#2b2b2b"], ["Sand", "#cdb891"]], pool: "menShirt", sizes: "apparel", description: "Relaxed-fit short-sleeved shirt in a viscose weave with a resort collar and straight hem.", fit: "Relaxed fit", composition: "Viscose 100%" },
   { title: "Regular Fit Oxford Shirt", department: "men", subcategory: "Linen & Casual Shirts", price: 1499, colors: [["Light Blue", "#b5cbe0"], ["White", "#f5f5f0"]], pool: "menShirt", sizes: "apparel", description: "Regular-fit shirt in cotton Oxford with a button-down collar and a chest pocket.", fit: "Regular fit", composition: "Cotton 100%" },
-  { title: "Relaxed Fit Hoodie", department: "men", subcategory: "Hoodies & Sweatshirts", price: 1999, colors: [["Black", "#1a1a1a"], ["Grey Marl", "#9a9a9a"], ["Brown", "#5c4033"]], pool: "hoodie", sizes: "apparel", description: "Relaxed-fit hoodie in cotton-blend sweatshirt fabric with a double-layered hood and kangaroo pocket.", fit: "Relaxed fit", composition: "Cotton 80%, Polyester 20%", hmPhoto: 9 },
+  { title: "Relaxed Fit Hoodie", department: "men", subcategory: "Hoodies & Sweatshirts", price: 1999, colors: [["Black", "#1a1a1a"], ["Grey Marl", "#9a9a9a"], ["Brown", "#5c4033"]], pool: "hoodie", sizes: "apparel", description: "Relaxed-fit hoodie in cotton-blend sweatshirt fabric with a double-layered hood and kangaroo pocket.", fit: "Relaxed fit", composition: "Cotton 80%, Polyester 20%" },
   { title: "Loose Fit Sweatshirt", department: "men", subcategory: "Hoodies & Sweatshirts", price: 1499, colors: [["Cream", "#efe6d2"], ["Dark Blue", "#1f2c4c"]], pool: "hoodie", sizes: "apparel", description: "Loose-fit sweatshirt with a ribbed crew neck, dropped shoulders and a soft brushed inside.", fit: "Loose fit", composition: "Cotton 70%, Polyester 30%" },
-  { title: "Baggy Jeans", department: "men", subcategory: "Baggy Jeans & Cargo Trousers", price: 2499, colors: [["Denim Blue", "#4f6d8f"], ["Washed Black", "#2d2d2d"]], pool: "menTrouser", sizes: "waist", description: "5-pocket baggy jeans in cotton denim with a regular waist and loose, wide legs.", fit: "Baggy fit", composition: "Cotton 100%", isNew: true, hmPhoto: 10 },
+  { title: "Baggy Jeans", department: "men", subcategory: "Baggy Jeans & Cargo Trousers", price: 2499, colors: [["Denim Blue", "#4f6d8f"], ["Washed Black", "#2d2d2d"]], pool: "menTrouser", sizes: "waist", description: "5-pocket baggy jeans in cotton denim with a regular waist and loose, wide legs.", fit: "Baggy fit", composition: "Cotton 100%", isNew: true },
   { title: "Loose Fit Cargo Trousers", department: "men", subcategory: "Baggy Jeans & Cargo Trousers", price: 2299, colors: [["Khaki Green", "#6b6b47"], ["Beige", "#d8c3a5"], ["Black", "#1a1a1a"]], pool: "menTrouser", sizes: "waist", description: "Loose-fit cargo trousers in cotton twill with flap leg pockets and drawstring hems.", fit: "Loose fit", composition: "Cotton 100%" },
   { title: "Slim Jeans", department: "men", subcategory: "Baggy Jeans & Cargo Trousers", price: 1999, originalPrice: 2699, colors: [["Dark Denim Blue", "#2c3e57"], ["Grey", "#6d6d6d"]], pool: "menTrouser", sizes: "waist", description: "5-pocket slim jeans in washed stretch denim with a regular waist and slim legs.", fit: "Slim fit", composition: "Cotton 99%, Elastane 1%" },
   { title: "Regular Fit Denim Jacket", department: "men", subcategory: "Jackets & Blazers", price: 2999, colors: [["Denim Blue", "#4f6d8f"], ["Black", "#1a1a1a"]], pool: "menJacket", sizes: "apparel", description: "Jacket in washed cotton denim with a collar, buttons down the front and flap chest pockets.", fit: "Regular fit", composition: "Cotton 100%" },
@@ -260,7 +245,7 @@ const CATALOG: CatalogEntry[] = [
   { title: "Baby Denim Dungarees", department: "baby", subcategory: "Denim", price: 1099, originalPrice: 1399, colors: [["Light Denim Blue", "#9db4cf"]], pool: "baby", sizes: "baby", description: "Dungarees in soft cotton denim with adjustable straps and poppers at the crotch.", fit: "Relaxed fit", composition: "Cotton 100%" },
   { title: "Cotton Sleepsuits 3-pack", department: "baby", subcategory: "Cotton Sets", price: 1299, colors: [["Animals Print", "#c9b79c"], ["Stripes", "#9fb3c8"]], pool: "baby", sizes: "baby", description: "Three all-in-one sleepsuits in soft cotton with poppers down the front and foldover cuffs.", fit: "Regular fit", composition: "Cotton 100%", conscious: true },
 
-  // ───────────── H&M HOME ─────────────
+  // ───────────── LINEA HOME ─────────────
   { title: "Linen Cushion Cover", department: "home", subcategory: "Cushion Covers", price: 799, colors: [["Natural", "#d9cbb0"], ["Light Grey", "#c8c8c8"], ["Terracotta", "#c46a4a"]], pool: "cushion", sizes: "one", description: "Cushion cover in washed linen with a concealed zip. 50x50 cm.", fit: "50x50 cm", composition: "Linen 100%", conscious: true },
   { title: "Washed Linen Duvet Cover Set", department: "home", subcategory: "Bedding", price: 4999, colors: [["White", "#f5f5f0"], ["Light Beige", "#e8dcc7"]], pool: "bedding", sizes: "one", description: "Double duvet cover set in washed linen with a concealed button fastening and two pillowcases.", fit: "Double 200x200 cm", composition: "Linen 100%", conscious: true, isNew: true },
   { title: "Cotton Percale Duvet Cover Set", department: "home", subcategory: "Bedding", price: 2999, originalPrice: 3999, colors: [["White", "#f5f5f0"], ["Grey", "#8a8a8a"]], pool: "bedding", sizes: "one", description: "Duvet cover set in crisp cotton percale with two pillowcases.", fit: "Double 200x200 cm", composition: "Cotton 100%" },
@@ -271,15 +256,15 @@ const CATALOG: CatalogEntry[] = [
   { title: "Patterned Cotton Rug", department: "home", subcategory: "Rugs", price: 2499, colors: [["Beige/Black", "#cdb891"], ["Grey", "#8a8a8a"]], pool: "rug", sizes: "one", description: "Rectangular rug in woven cotton with a jacquard pattern and fringes at the short sides. 140x200 cm.", fit: "140x200 cm", composition: "Cotton 100%", conscious: true },
   { title: "Jute-blend Rug", department: "home", subcategory: "Rugs", price: 3499, originalPrice: 4499, colors: [["Natural", "#d9cbb0"]], pool: "rug", sizes: "one", description: "Round rug in a braided jute blend. Diameter 120 cm.", fit: "Ø 120 cm", composition: "Jute 70%, Cotton 30%" },
 
-  // ───────────── SPORT (H&M MOVE) ─────────────
-  { title: "DryMove™ Training Top", department: "sport", subcategory: "DryMove™ Tops", price: 999, colors: [["Black", "#1a1a1a"], ["Light Purple", "#c8b6e2"]], pool: "sportLadies", sizes: "apparel", description: "Fitted sports top in fast-drying DryMove™ functional fabric with flatlock seams.", fit: "Fitted", composition: "Polyester 88%, Elastane 12%", conscious: true },
-  { title: "DryMove™ Seamless Sports Bra", department: "sport", subcategory: "DryMove™ Tops", price: 1299, colors: [["Black", "#1a1a1a"], ["Dusty Pink", "#d4a5a5"], ["Sage Green", "#9caf88"]], pool: "sportLadies", sizes: "apparel", description: "Medium-support seamless sports bra in DryMove™ with removable inserts.", fit: "Medium support", composition: "Polyamide 92%, Elastane 8%", isNew: true },
-  { title: "DryMove™ Running Shorts", department: "sport", subcategory: "Running Shorts", price: 1199, colors: [["Black", "#1a1a1a"], ["Dark Blue", "#1f2c4c"]], pool: "sportLadies", sizes: "apparel", description: "Running shorts in DryMove™ with an inner brief, elasticated waist and reflective details.", fit: "Regular fit", composition: "Polyester 100%" },
-  { title: "High Waist Sports Leggings", department: "sport", subcategory: "Leggings", price: 1499, originalPrice: 1999, colors: [["Black", "#1a1a1a"], ["Dark Brown", "#4a3426"], ["Dark Green", "#24402f"]], pool: "sportLadies", sizes: "apparel", description: "Sports tights in fast-drying DryMove™ with a wide high waist and hidden key pocket.", fit: "Skinny fit", composition: "Polyester 78%, Elastane 22%", conscious: true },
-  { title: "Track Jacket", department: "sport", subcategory: "Track Jackets", price: 2299, colors: [["Black", "#1a1a1a"], ["Navy Blue", "#1f2c4c"]], pool: "sportMen", sizes: "apparel", description: "Track jacket in DryMove™ with a stand-up collar, zip and side pockets.", fit: "Regular fit", composition: "Polyester 100%", isNew: true },
-  { title: "DryMove™ Running T-shirt", department: "sport", subcategory: "DryMove™ Tops", price: 999, colors: [["Grey", "#8a8a8a"], ["Bright Blue", "#2f6ad0"]], pool: "sportMen", sizes: "apparel", description: "Regular-fit running T-shirt in breathable, fast-drying DryMove™ mesh.", fit: "Regular fit", composition: "Polyester 100%" },
-  { title: "DryMove™ Training Shorts", department: "sport", subcategory: "Running Shorts", price: 1199, colors: [["Black", "#1a1a1a"], ["Olive", "#556b2f"]], pool: "sportMen", sizes: "apparel", description: "Training shorts in DryMove™ with an elasticated drawstring waist and zipped pocket.", fit: "Regular fit", composition: "Polyester 90%, Elastane 10%" },
-  { title: "Tapered Track Pants", department: "sport", subcategory: "Track Jackets", price: 1799, colors: [["Black", "#1a1a1a"], ["Dark Grey", "#4a4a4a"]], pool: "sportMen", sizes: "apparel", description: "Tapered sports trousers in DryMove™ with zipped side pockets and zips at the hems.", fit: "Tapered fit", composition: "Polyester 88%, Elastane 12%" },
+  // ───────────── SPORT (LINEA MOVE) ─────────────
+  { title: "QuickDry Training Top", department: "sport", subcategory: "QuickDry Tops", price: 999, colors: [["Black", "#1a1a1a"], ["Light Purple", "#c8b6e2"]], pool: "sportLadies", sizes: "apparel", description: "Fitted sports top in fast-drying QuickDry functional fabric with flatlock seams.", fit: "Fitted", composition: "Polyester 88%, Elastane 12%", conscious: true },
+  { title: "QuickDry Seamless Sports Bra", department: "sport", subcategory: "QuickDry Tops", price: 1299, colors: [["Black", "#1a1a1a"], ["Dusty Pink", "#d4a5a5"], ["Sage Green", "#9caf88"]], pool: "sportLadies", sizes: "apparel", description: "Medium-support seamless sports bra in QuickDry with removable inserts.", fit: "Medium support", composition: "Polyamide 92%, Elastane 8%", isNew: true },
+  { title: "QuickDry Running Shorts", department: "sport", subcategory: "Running Shorts", price: 1199, colors: [["Black", "#1a1a1a"], ["Dark Blue", "#1f2c4c"]], pool: "sportLadies", sizes: "apparel", description: "Running shorts in QuickDry with an inner brief, elasticated waist and reflective details.", fit: "Regular fit", composition: "Polyester 100%" },
+  { title: "High Waist Sports Leggings", department: "sport", subcategory: "Leggings", price: 1499, originalPrice: 1999, colors: [["Black", "#1a1a1a"], ["Dark Brown", "#4a3426"], ["Dark Green", "#24402f"]], pool: "sportLadies", sizes: "apparel", description: "Sports tights in fast-drying QuickDry with a wide high waist and hidden key pocket.", fit: "Skinny fit", composition: "Polyester 78%, Elastane 22%", conscious: true },
+  { title: "Track Jacket", department: "sport", subcategory: "Track Jackets", price: 2299, colors: [["Black", "#1a1a1a"], ["Navy Blue", "#1f2c4c"]], pool: "sportMen", sizes: "apparel", description: "Track jacket in QuickDry with a stand-up collar, zip and side pockets.", fit: "Regular fit", composition: "Polyester 100%", isNew: true },
+  { title: "QuickDry Running T-shirt", department: "sport", subcategory: "QuickDry Tops", price: 999, colors: [["Grey", "#8a8a8a"], ["Bright Blue", "#2f6ad0"]], pool: "sportMen", sizes: "apparel", description: "Regular-fit running T-shirt in breathable, fast-drying QuickDry mesh.", fit: "Regular fit", composition: "Polyester 100%" },
+  { title: "QuickDry Training Shorts", department: "sport", subcategory: "Running Shorts", price: 1199, colors: [["Black", "#1a1a1a"], ["Olive", "#556b2f"]], pool: "sportMen", sizes: "apparel", description: "Training shorts in QuickDry with an elasticated drawstring waist and zipped pocket.", fit: "Regular fit", composition: "Polyester 90%, Elastane 10%" },
+  { title: "Tapered Track Pants", department: "sport", subcategory: "Track Jackets", price: 1799, colors: [["Black", "#1a1a1a"], ["Dark Grey", "#4a4a4a"]], pool: "sportMen", sizes: "apparel", description: "Tapered sports trousers in QuickDry with zipped side pockets and zips at the hems.", fit: "Tapered fit", composition: "Polyester 88%, Elastane 12%" },
 ];
 
 // ── Deterministic helpers ───────────────────────────────────────────────────
@@ -331,7 +316,7 @@ export function buildCatalog(): Product[] {
 
     const variants: ProductVariant[] = entry.colors.map(([colorName, colorHex], ci) => {
       const offset = (index + ci * 2) % pool.length;
-      const primary = ci === 0 && entry.hmPhoto !== undefined ? HM_CDN_PHOTOS[entry.hmPhoto] : pool[offset];
+      const primary = pool[offset];
       const hover = pool[(offset + 1) % pool.length];
       const gallery = [primary, hover, pool[(offset + 2) % pool.length], pool[(offset + 3) % pool.length]];
       const sizeStocks = sizes.map((size, si) => {
@@ -465,12 +450,12 @@ export async function mergeExternalFashionPhotos(products: Product[]): Promise<n
   return merged;
 }
 
-// ── Demo H&M Member ─────────────────────────────────────────────────────────
+// ── Demo LINEA Member ─────────────────────────────────────────────────────────
 
 export function buildDemoMember(): User {
   return {
     id: DEMO_MEMBER_ID,
-    memberId: "HM-IN-2026-000001",
+    memberId: "LN-IN-2026-000001",
     name: "Aanya Sharma",
     email: DEMO_MEMBER_EMAIL,
     phone: "+91 98765 43210",

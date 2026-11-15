@@ -15,7 +15,7 @@ const TAB_LABELS: { id: ProfileTab; label: string }[] = [
   { id: "profile", label: "My profile, sizes & address" },
   { id: "orders", label: "My purchases & receipts" },
   { id: "favourites", label: "My favourites" },
-  { id: "rewards", label: "H&M Club rewards & vouchers" },
+  { id: "rewards", label: "LINEA Club rewards & vouchers" },
 ];
 
 export default function ProfileClient({ initialTab }: { initialTab: ProfileTab }) {
@@ -59,11 +59,11 @@ export default function ProfileClient({ initialTab }: { initialTab: ProfileTab }
         <button onClick={logout} className="flex items-center gap-1.5 text-sm underline"><LogOut size={14} /> Sign out</button>
       </div>
 
-      {/* Digital H&M Member card */}
+      {/* Digital LINEA Member card */}
       <div className="mt-6 grid gap-6 md:grid-cols-[380px_1fr]">
-        <div className={`relative overflow-hidden rounded-xl p-6 text-white shadow-md ${user.tier === "Member Plus" ? "bg-gradient-to-br from-neutral-900 to-neutral-700" : "bg-gradient-to-br from-[#E50010] to-[#a8000c]"}`}>
+        <div className={`relative overflow-hidden rounded-xl p-6 text-white shadow-md ${user.tier === "Member Plus" ? "bg-gradient-to-br from-neutral-900 to-neutral-700" : "bg-gradient-to-br from-[#2f5a40] to-[#1f3d2b]"}`}>
           <div className="flex items-start justify-between">
-            <span className="font-serif text-3xl font-bold italic">H&amp;M</span>
+            <span className="text-2xl font-light uppercase tracking-[0.35em]">LINEA</span>
             <span className="rounded-full bg-white/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider">{user.tier}</span>
           </div>
           <p className="mt-8 text-lg font-semibold">{user.name}</p>
@@ -287,7 +287,7 @@ function RewardsTab({ user, recycling, orders }: { user: PublicUser; recycling: 
   return (
     <div className="grid gap-8 lg:grid-cols-2">
       <section>
-        <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider">H&amp;M Club rewards</h2>
+        <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider">LINEA Club rewards</h2>
         <div className="grid grid-cols-3 gap-3 text-center">
           <Stat label="Balance" value={`${user.memberPoints} pts`} />
           <Stat label="From purchases" value={`${earnedFromOrders} pts`} />
@@ -305,7 +305,7 @@ function RewardsTab({ user, recycling, orders }: { user: PublicUser; recycling: 
           <Link href="/sustainability" className="text-xs underline">Recycle a bag</Link>
         </div>
         {recycling.length === 0 ? (
-          <p className="bg-[#faf9f8] p-5 text-sm text-neutral-600">No vouchers yet. Drop off a bag of old clothes at any H&amp;M store and log it on the <Link href="/sustainability" className="underline">Sustainability page</Link>.</p>
+          <p className="bg-[#faf9f8] p-5 text-sm text-neutral-600">No vouchers yet. Drop off a bag of old clothes at any LINEA store and log it on the <Link href="/sustainability" className="underline">Sustainability page</Link>.</p>
         ) : (
           <ul className="space-y-3">
             {recycling.map((r) => {

@@ -47,7 +47,7 @@ const TILES = [
   { label: "Shirts", href: "/shop?subcategory=Shirts%20%26%20Blouses", image: unsplash("1602810318383-e386cc2a3ccf", 600) },
   { label: "Hoodies", href: "/shop?subcategory=Hoodies%20%26%20Sweatshirts", image: unsplash("1556821840-3a63f95609a7", 600) },
   { label: "Denim", href: "/shop?subcategory=Jeans%20%26%20Trousers", image: unsplash("1541099649105-f69ad21f3246", 600) },
-  { label: "H&M HOME", href: "/shop?department=home", image: unsplash("1584100936595-c0654b55a2e2", 600) },
+  { label: "LINEA HOME", href: "/shop?department=home", image: unsplash("1584100936595-c0654b55a2e2", 600) },
 ];
 
 export default async function HomePage() {
@@ -77,7 +77,7 @@ export default async function HomePage() {
           <HeroImage src={main.image} fallback={main.fallback} alt={main.title} />
           <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 mx-auto max-w-[1440px] px-6 pb-12 text-white">
-            <p className="text-xs font-semibold uppercase tracking-[0.25em]">New in · H&amp;M India</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.25em]">New in · LINEA India</p>
             <h1 className="mt-2 max-w-2xl text-4xl font-semibold leading-tight md:text-6xl">{main.title}</h1>
             <p className="mt-3 max-w-xl text-base md:text-lg">{main.subtitle}</p>
             <span className="mt-6 inline-block bg-white px-7 py-3 text-xs font-semibold uppercase tracking-wider text-black group-hover:bg-neutral-100">{main.cta}</span>
@@ -120,7 +120,7 @@ export default async function HomePage() {
       <section className="mx-auto max-w-[1440px] px-4 py-8">
         <div className="flex flex-col items-center justify-between gap-4 bg-[#f4f1ec] px-8 py-10 text-center md:flex-row md:text-left">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-[#E50010]">H&amp;M Member</p>
+            <p className="text-xs font-semibold uppercase tracking-widest text-[#E50010]">LINEA Member</p>
             <h2 className="mt-1 text-2xl font-semibold">Earn 1 point for every ₹50 — reach 800 pts for Member Plus</h2>
             <p className="mt-1 text-sm text-neutral-600">Free delivery above ₹1,999, 10% member promo and +50 pts for every bag of clothes you recycle.</p>
           </div>

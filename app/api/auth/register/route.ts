@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
   const id = newId("usr");
   const user: User = {
     id,
-    memberId: `HM-IN-${new Date().getFullYear()}-${id.slice(-6).toUpperCase()}`,
+    memberId: `LN-IN-${new Date().getFullYear()}-${id.slice(-6).toUpperCase()}`,
     name,
     email,
     phone: (body.phone ?? "").trim(),

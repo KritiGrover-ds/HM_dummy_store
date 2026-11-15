@@ -1,6 +1,6 @@
 import AuthForm from "@/components/AuthForm";
 
-export const metadata = { title: "Become a member | H&M India" };
+export const metadata = { title: "Become a member | LINEA India" };
 
 export default async function RegisterPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const sp = await searchParams;

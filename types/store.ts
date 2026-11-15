@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// H&M India Clone – shared domain types (used by both server and client code)
+// LINEA India Clone – shared domain types (used by both server and client code)
 // ─────────────────────────────────────────────────────────────────────────────
 
 export type Department = "ladies" | "men" | "kids" | "baby" | "home" | "sport";
@@ -9,7 +9,7 @@ export const DEPARTMENTS: { id: Department; label: string }[] = [
   { id: "men", label: "Men" },
   { id: "kids", label: "Kids" },
   { id: "baby", label: "Baby" },
-  { id: "home", label: "H&M HOME" },
+  { id: "home", label: "LINEA HOME" },
   { id: "sport", label: "Sport" },
 ];
 
@@ -32,7 +32,7 @@ export interface ProductVariant {
 export interface Product {
   id: string;
   slug: string;
-  articleNumber: string; // 10-digit H&M article number
+  articleNumber: string; // 10-digit LINEA article number
   title: string;
   department: Department;
   subcategory: string;
@@ -42,7 +42,7 @@ export interface Product {
   care: string;
   price: number; // INR, current selling price
   originalPrice?: number; // INR, present when on sale
-  memberPrice?: number; // INR, H&M Member price
+  memberPrice?: number; // INR, LINEA Member price
   isSale: boolean;
   isNewArrival: boolean;
   isConscious: boolean; // Conscious Choice badge

@@ -8,7 +8,7 @@ import ProductImage from "./ProductImage";
 import { formatINR } from "@/lib/catalogConfig";
 import { trackEvent } from "@/lib/telemetryClient";
 
-const SUGGESTIONS = ["linen", "dress", "baggy jeans", "hoodie", "drymove", "cushion", "party"];
+const SUGGESTIONS = ["linen", "dress", "baggy jeans", "hoodie", "quickdry", "cushion", "party"];
 
 export default function SearchModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [query, setQuery] = useState("");

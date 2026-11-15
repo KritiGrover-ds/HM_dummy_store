@@ -1,17 +1,45 @@
 import "server-only";
 import Redis from "ioredis";
+import { execFileSync } from "child_process";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Singleton ioredis connection (survives Next.js hot reloads in dev)
+//
+// Windows + WSL: Redis running inside WSL2 is normally reachable on
+// 127.0.0.1 via WSL "localhost forwarding", but that forwarding is often
+// broken (after sleep / `wsl --shutdown`, VPNs, some builds). When no
+// REDIS_URL is set and 127.0.0.1 refuses the connection on Windows, we ask
+// WSL for its IP (`wsl hostname -I`) and transparently retry there.
 // ─────────────────────────────────────────────────────────────────────────────
 
-const REDIS_URL = process.env.REDIS_URL || "redis://127.0.0.1:6379";
+const EXPLICIT_URL = process.env.REDIS_URL?.trim();
+const REDIS_URL = EXPLICIT_URL || "redis://127.0.0.1:6379";
 
 declare global {
   // eslint-disable-next-line no-var
   var redisClient: Redis | undefined;
   // eslint-disable-next-line no-var
   var redisSubscriber: Redis | undefined;
+  // eslint-disable-next-line no-var
+  var hmWslRedisHost: string | null | undefined;
+}
+
+/** Returns the WSL2 VM's IPv4 address on Windows, or null (cached per process). */
+function detectWslHost(): string | null {
+  if (globalThis.hmWslRedisHost !== undefined) return globalThis.hmWslRedisHost;
+  let host: string | null = null;
+  if (process.platform === "win32") {
+    try {
+      const out = execFileSync("wsl.exe", ["hostname", "-I"], { timeout: 8000, windowsHide: true })
+        .toString("utf8")
+        .replace(/\u0000/g, ""); // some wsl.exe builds emit UTF-16LE
+      host = out.split(/\s+/).find((t) => /^\d{1,3}(\.\d{1,3}){3}$/.test(t)) ?? null;
+    } catch {
+      host = null;
+    }
+  }
+  globalThis.hmWslRedisHost = host;
+  return host;
 }
 
 function createClient(name: string): Redis {
@@ -19,11 +47,35 @@ function createClient(name: string): Redis {
     connectionName: name,
     maxRetriesPerRequest: 3,
     enableReadyCheck: true,
-    retryStrategy: (times) => Math.min(times * 200, 3000),
+    retryStrategy: (times) => Math.min(times * 300, 5000),
   });
-  client.on("error", (err) => {
-    // Keep the log concise – a stopped Redis server otherwise floods the console
-    console.error(`[redis:${name}]`, err.message);
+
+  let lastError = "";
+  let triedWsl = false;
+
+  client.on("error", (err: NodeJS.ErrnoException) => {
+    // Auto-fallback to the WSL IP on Windows (only when REDIS_URL was not set explicitly)
+    if (!EXPLICIT_URL && !triedWsl && err.code === "ECONNREFUSED" && process.platform === "win32") {
+      triedWsl = true;
+      const wslHost = detectWslHost();
+      if (wslHost && client.options.host !== wslHost) {
+        console.warn(`[redis:${name}] 127.0.0.1:6379 refused – retrying Redis inside WSL at ${wslHost}:6379`);
+        // ioredis' connector reads these options on every reconnect attempt
+        client.options.host = wslHost;
+        return;
+      }
+    }
+    // Log each distinct error once instead of flooding the console on every retry
+    if (err.message !== lastError) {
+      lastError = err.message;
+      console.error(`[redis:${name}] ${err.message}${err.code === "ECONNREFUSED" ? " – is redis-server running and reachable? See README › Redis on WSL." : ""}`);
+    }
+  });
+  client.on("ready", () => {
+    if (lastError || client.options.host !== "127.0.0.1") {
+      console.log(`[redis:${name}] connected to ${client.options.host}:${client.options.port}`);
+    }
+    lastError = "";
   });
   return client;
 }

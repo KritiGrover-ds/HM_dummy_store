@@ -124,7 +124,7 @@ export default function ProductDetail({
     <div className="mx-auto max-w-[1440px] px-4 py-6">
       {/* Breadcrumbs */}
       <nav className="mb-4 text-xs text-neutral-600">
-        <Link href="/" className="hover:underline">H&amp;M</Link> /{" "}
+        <Link href="/" className="hover:underline">LINEA</Link> /{" "}
         <Link href={`/shop?department=${product.department}`} className="hover:underline">{DEPARTMENT_LABELS[product.department]}</Link> /{" "}
         <Link href={`/shop?department=${product.department}&subcategory=${encodeURIComponent(product.subcategory)}`} className="hover:underline">{product.subcategory}</Link>
       </nav>
@@ -168,7 +168,7 @@ export default function ProductDetail({
           </div>
           {product.memberPrice && (
             <p className="mt-1 text-xs">
-              <span className="font-semibold">H&amp;M Member price {formatINR(product.memberPrice)}</span>{" "}
+              <span className="font-semibold">LINEA Member price {formatINR(product.memberPrice)}</span>{" "}
               <span className="text-neutral-600">with the 10% member promo at checkout</span>
             </p>
           )}
@@ -277,12 +277,12 @@ export default function ProductDetail({
               {product.isConscious ? (
                 <p className="mt-2 text-emerald-800">This Conscious choice product is made with at least 50% more sustainable materials such as organic cotton, recycled polyester or linen.</p>
               ) : (
-                <p className="mt-2 text-neutral-600">Give your clothes a longer life – bring unwanted garments to any H&amp;M store for Garment Collecting.</p>
+                <p className="mt-2 text-neutral-600">Give your clothes a longer life – bring unwanted garments to any LINEA store for Garment Collecting.</p>
               )}
             </Accordion>
             <Accordion id="delivery" title="Delivery & returns in India" open={openAccordion} setOpen={setOpenAccordion}>
               <ul className="list-disc space-y-1 pl-4">
-                <li>Standard delivery: 2–5 working days, ₹149 (free for H&amp;M Members above ₹1,999).</li>
+                <li>Standard delivery: 2–5 working days, ₹149 (free for LINEA Members above ₹1,999).</li>
                 <li>Express delivery: 1–2 working days in metro cities, ₹299.</li>
                 <li>Free returns within 15 days in store or via doorstep pickup.</li>
                 <li>Cash on delivery available up to ₹10,000 (simulated payment in this demo).</li>

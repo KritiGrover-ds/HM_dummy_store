@@ -3,6 +3,7 @@ import type { InventoryEvent } from "@/types/store";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
+export const maxDuration = 300; // Vercel: keep the SSE stream open up to 5 min (EventSource auto-reconnects)
 
 /** GET /api/inventory/stream – Server-Sent Events: STOCK_UPDATE & SEED_RESET, 15 s heartbeat. */
 export async function GET(request: Request) {

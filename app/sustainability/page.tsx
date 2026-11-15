@@ -10,13 +10,13 @@ import type { GarmentRecyclingSubmission } from "@/types/store";
 
 const GARMENTS = ["T-shirts & tops", "Jeans & trousers", "Dresses", "Knitwear", "Jackets", "Kidswear", "Home textiles", "Socks & underwear"];
 const STORES = [
-  "H&M Select Citywalk, New Delhi",
-  "H&M Phoenix Palladium, Mumbai",
-  "H&M Orion Mall, Bengaluru",
-  "H&M Express Avenue, Chennai",
-  "H&M Inorbit Mall, Hyderabad",
-  "H&M South City Mall, Kolkata",
-  "H&M Phoenix Marketcity, Pune",
+  "LINEA Select Citywalk, New Delhi",
+  "LINEA Phoenix Palladium, Mumbai",
+  "LINEA Orion Mall, Bengaluru",
+  "LINEA Express Avenue, Chennai",
+  "LINEA Inorbit Mall, Hyderabad",
+  "LINEA South City Mall, Kolkata",
+  "LINEA Phoenix Marketcity, Pune",
 ];
 
 export default function SustainabilityPage() {
@@ -61,16 +61,16 @@ export default function SustainabilityPage() {
         <div className="absolute inset-0 bg-black/35" />
         <div className="absolute inset-x-0 bottom-0 mx-auto max-w-[1200px] px-6 pb-10 text-white">
           <p className="text-xs font-semibold uppercase tracking-[0.25em]">Let’s close the loop</p>
-          <h1 className="mt-2 max-w-2xl text-4xl font-semibold md:text-5xl">H&amp;M Garment Collecting &amp; Conscious Choice</h1>
-          <p className="mt-3 max-w-xl">Bring any unwanted clothes or textiles, any brand, any condition, to an H&amp;M store — and get rewarded.</p>
+          <h1 className="mt-2 max-w-2xl text-4xl font-semibold md:text-5xl">LINEA Garment Collecting &amp; Conscious Choice</h1>
+          <p className="mt-3 max-w-xl">Bring any unwanted clothes or textiles, any brand, any condition, to an LINEA store — and get rewarded.</p>
         </div>
       </section>
 
       <section className="mx-auto grid max-w-[1200px] gap-6 px-4 py-12 md:grid-cols-3">
         {[
           { icon: <Shirt />, title: "1. Bag it", text: "Collect clothes and home textiles you no longer use — any brand, any condition." },
-          { icon: <Recycle />, title: "2. Drop it off", text: "Hand the bag in at the cash desk of any H&M store in India." },
-          { icon: <Leaf />, title: "3. Get rewarded", text: "Log it here to earn +50 H&M Member points and a 15% off voucher." },
+          { icon: <Recycle />, title: "2. Drop it off", text: "Hand the bag in at the cash desk of any LINEA store in India." },
+          { icon: <Leaf />, title: "3. Get rewarded", text: "Log it here to earn +50 LINEA Member points and a 15% off voucher." },
         ].map((s) => (
           <div key={s.title} className="bg-[#faf9f8] p-6">
             <span className="text-emerald-700">{s.icon}</span>
@@ -86,7 +86,7 @@ export default function SustainabilityPage() {
             <h2 className="text-2xl font-semibold">Log your drop-off</h2>
             {!user ? (
               <div className="mt-4 bg-[#faf9f8] p-6 text-sm">
-                <p>Sign in as an H&amp;M Member to log your Garment Collecting bag and collect your reward.</p>
+                <p>Sign in as an LINEA Member to log your Garment Collecting bag and collect your reward.</p>
                 <Link href="/login?next=/sustainability" className="mt-4 inline-block bg-black px-6 py-3 text-xs font-semibold uppercase tracking-wider text-white">Sign in</Link>
               </div>
             ) : result ? (

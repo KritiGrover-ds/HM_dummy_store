@@ -2,7 +2,7 @@ import ShopClient, { type ShopFilters } from "./ShopClient";
 
 export const dynamic = "force-dynamic";
 
-export const metadata = { title: "Shop all | H&M India" };
+export const metadata = { title: "Shop all | LINEA India" };
 
 type SP = Record<string, string | string[] | undefined>;
 

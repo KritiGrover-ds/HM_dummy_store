@@ -14,9 +14,9 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const { slug } = await params;
   try {
     const product = await getProductBySlug(slug);
-    return { title: product ? `${product.title} | H&M India` : "Product not found | H&M India" };
+    return { title: product ? `${product.title} | LINEA India` : "Product not found | LINEA India" };
   } catch {
-    return { title: "H&M India" };
+    return { title: "LINEA India" };
   }
 }
 

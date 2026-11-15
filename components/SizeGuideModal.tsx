@@ -133,7 +133,7 @@ export default function SizeGuideModal({
           <table className="w-full text-left text-[13px]">
             <thead className="border-b border-black text-xs uppercase tracking-wide">
               <tr>
-                <th className="py-2 pr-3">H&amp;M</th>
+                <th className="py-2 pr-3">LINEA</th>
                 <th className="py-2 pr-3">India</th>
                 <th className="py-2 pr-3">International</th>
                 <th className="py-2 pr-3">Chest</th>
@@ -158,7 +158,7 @@ export default function SizeGuideModal({
 
         <div className="mt-6 bg-[#faf9f8] p-4">
           <p className="text-sm font-semibold">Find my size</p>
-          <p className="text-xs text-neutral-600">{savedSizes?.chestCm ? "Pre-filled from your H&M Member profile (cm)." : "Enter your measurements in cm. Save them in your profile for next time."}</p>
+          <p className="text-xs text-neutral-600">{savedSizes?.chestCm ? "Pre-filled from your LINEA Member profile (cm)." : "Enter your measurements in cm. Save them in your profile for next time."}</p>
           <div className="mt-3 grid grid-cols-3 gap-3">
             {[
               ["Chest", chest, setChest],

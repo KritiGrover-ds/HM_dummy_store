@@ -31,7 +31,7 @@ export default function Footer() {
   }
 
   const cols: { title: string; links: [string, string][] }[] = [
-    { title: "Shop", links: [["Ladies", "/shop?department=ladies"], ["Men", "/shop?department=men"], ["Kids", "/shop?department=kids"], ["Baby", "/shop?department=baby"], ["H&M HOME", "/shop?department=home"], ["Sport", "/shop?department=sport"], ["Sale", "/shop?isSale=true"]] },
+    { title: "Shop", links: [["Ladies", "/shop?department=ladies"], ["Men", "/shop?department=men"], ["Kids", "/shop?department=kids"], ["Baby", "/shop?department=baby"], ["LINEA HOME", "/shop?department=home"], ["Sport", "/shop?department=sport"], ["Sale", "/shop?isSale=true"]] },
     { title: "Corporate Info", links: [["Sustainability", "/sustainability"], ["Garment Collecting", "/sustainability"], ["Conscious Choice", "/shop?search=conscious"]] },
     { title: "Help", links: [["My account", "/profile"], ["My orders", "/profile?tab=orders"], ["Favourites", "/favourites"], ["Delivery & Returns", "/shop"]] },
   ];
@@ -68,8 +68,8 @@ export default function Footer() {
       </div>
       <div className="border-t border-neutral-200">
         <div className="mx-auto flex max-w-[1440px] flex-col items-center gap-2 px-4 py-6 text-center text-[11px] text-neutral-500">
-          <span className="font-serif text-2xl font-bold italic text-[#E50010]">H&amp;M</span>
-          <p>India | ₹ INR · Educational demo clone built with Next.js &amp; Redis. Not affiliated with H &amp; M Hennes &amp; Mauritz AB.</p>
+          <span className="text-xl font-light uppercase tracking-[0.35em] text-black">LINEA</span>
+          <p>India | ₹ INR · Educational demo clone built with Next.js &amp; Redis. LINEA is a fictional brand created for a student project.</p>
           <p>The content of this site is for demonstration only. Prices include GST.</p>
         </div>
       </div>

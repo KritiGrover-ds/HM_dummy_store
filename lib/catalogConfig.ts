@@ -8,7 +8,7 @@ export const DEPARTMENT_LABELS: Record<Department, string> = {
   men: "Men",
   kids: "Kids",
   baby: "Baby",
-  home: "H&M HOME",
+  home: "LINEA HOME",
   sport: "Sport",
 };
 
@@ -35,7 +35,7 @@ export const DEPARTMENT_SUBCATEGORIES: Record<Department, string[]> = {
   kids: ["Party Edit 2-8Y", "Party Edit 9-14Y", "Cotton Sets", "Denim", "Tops & T-shirts"],
   baby: ["Rompers", "Cotton Sets", "Knitwear", "Denim"],
   home: ["Cushion Covers", "Bedding", "Vases", "Candles", "Rugs"],
-  sport: ["DryMove™ Tops", "Running Shorts", "Leggings", "Track Jackets"],
+  sport: ["QuickDry Tops", "Running Shorts", "Leggings", "Track Jackets"],
 };
 
 /**
@@ -45,7 +45,7 @@ export const DEPARTMENT_SUBCATEGORIES: Record<Department, string[]> = {
  */
 export const SUBCATEGORY_GROUPS: Record<string, string[]> = {
   Dresses: ["Dresses", "Party Edit 2-8Y", "Party Edit 9-14Y"],
-  "Tops & T-shirts": ["Tops & T-shirts", "Oversized T-shirts", "Polo Shirts", "DryMove™ Tops"],
+  "Tops & T-shirts": ["Tops & T-shirts", "Oversized T-shirts", "Polo Shirts", "QuickDry Tops"],
   "Shirts & Blouses": ["Shirts & Blouses", "Linen & Casual Shirts"],
   "Hoodies & Sweatshirts": ["Sweatshirts & Hoodies", "Hoodies & Sweatshirts"],
   "Jeans & Trousers": ["Jeans & Trousers", "Baggy Jeans & Cargo Trousers", "Denim"],
@@ -53,7 +53,7 @@ export const SUBCATEGORY_GROUPS: Record<string, string[]> = {
   "Knitwear & Cardigans": ["Cardigans & Knitwear", "Knitwear"],
   "Skirts & Co-ords": ["Skirts & Co-ords", "Cotton Sets"],
   "Home & Living": ["Cushion Covers", "Bedding", "Vases", "Candles", "Rugs"],
-  Activewear: ["DryMove™ Tops", "Running Shorts", "Leggings", "Track Jackets"],
+  Activewear: ["QuickDry Tops", "Running Shorts", "Leggings", "Track Jackets"],
 };
 
 export const SHOP_SUBCATEGORY_TABS = ["All", ...Object.keys(SUBCATEGORY_GROUPS)];

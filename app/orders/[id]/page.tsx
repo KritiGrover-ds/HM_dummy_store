@@ -54,7 +54,7 @@ export default async function OrderReceiptPage({
             <p className="text-sm text-neutral-700">A confirmation has been sent to {order.customer.email}. Estimated delivery by {dateFmt(eta)}.</p>
             {order.pointsEarned > 0 && (
               <p className="mt-1 text-sm font-semibold text-emerald-800">
-                +{order.pointsEarned} H&amp;M Member points earned{order.tierAfterOrder === "Member Plus" ? " · You’re a Member Plus!" : ""}
+                +{order.pointsEarned} LINEA Member points earned{order.tierAfterOrder === "Member Plus" ? " · You’re a Member Plus!" : ""}
               </p>
             )}
           </div>
@@ -64,8 +64,8 @@ export default async function OrderReceiptPage({
       <div className="border border-neutral-300">
         <header className="flex flex-wrap items-start justify-between gap-4 border-b border-neutral-300 p-6">
           <div>
-            <p className="font-serif text-3xl font-bold italic text-[#E50010]">H&amp;M</p>
-            <p className="mt-1 text-xs text-neutral-600">H &amp; M Hennes &amp; Mauritz Retail Pvt. Ltd. (demo)<br />GSTIN: 29AAECH0000X1Z5 (sample)</p>
+            <p className="text-2xl font-light uppercase tracking-[0.35em] text-black">LINEA</p>
+            <p className="mt-1 text-xs text-neutral-600">LINEA Fashion Retail Pvt. Ltd. (demo)<br />GSTIN: 29AAECH0000X1Z5 (sample)</p>
           </div>
           <div className="text-right text-sm">
             <p className="text-lg font-semibold">Tax Invoice</p>
@@ -129,7 +129,7 @@ export default async function OrderReceiptPage({
         <div className="flex justify-end p-6">
           <dl className="w-full max-w-xs space-y-1.5 text-sm">
             <div className="flex justify-between"><dt>Order value</dt><dd>{formatINR(order.subtotal)}</dd></div>
-            {order.memberDiscount > 0 && <div className="flex justify-between text-[#E50010]"><dt>H&amp;M Member discount</dt><dd>−{formatINR(order.memberDiscount)}</dd></div>}
+            {order.memberDiscount > 0 && <div className="flex justify-between text-[#E50010]"><dt>LINEA Member discount</dt><dd>−{formatINR(order.memberDiscount)}</dd></div>}
             <div className="flex justify-between"><dt>Delivery</dt><dd>{order.deliveryFee === 0 ? "Free" : formatINR(order.deliveryFee)}</dd></div>
             <div className="flex justify-between text-xs text-neutral-600"><dt>Taxable value</dt><dd>{formatINR(taxable)}</dd></div>
             <div className="flex justify-between text-xs text-neutral-600"><dt>GST (12%) included</dt><dd>{formatINR(order.gstIncluded)}</dd></div>

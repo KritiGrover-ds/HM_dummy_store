@@ -126,7 +126,7 @@ export default function CartDrawer() {
               </Link>
               {!user && (
                 <p className="mt-2 text-center text-xs text-neutral-600">
-                  <Link href="/login" onClick={closeCart} className="underline">Sign in</Link> to earn H&amp;M Member points on this order.
+                  <Link href="/login" onClick={closeCart} className="underline">Sign in</Link> to earn LINEA Member points on this order.
                 </p>
               )}
             </div>

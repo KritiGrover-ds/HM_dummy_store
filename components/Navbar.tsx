@@ -15,7 +15,7 @@ const NAV: { label: string; href: string; dept?: Department; accent?: boolean }[
   { label: "Men", href: "/shop?department=men", dept: "men" },
   { label: "Kids", href: "/shop?department=kids", dept: "kids" },
   { label: "Baby", href: "/shop?department=baby", dept: "baby" },
-  { label: "H&M HOME", href: "/shop?department=home", dept: "home" },
+  { label: "LINEA HOME", href: "/shop?department=home", dept: "home" },
   { label: "Sport", href: "/shop?department=sport", dept: "sport" },
   { label: "Sale", href: "/shop?isSale=true", accent: true },
   { label: "Sustainability", href: "/sustainability" },
@@ -60,7 +60,7 @@ export default function Navbar() {
       <div className="bg-[#faf9f8] text-[11px] text-neutral-700">
         <div className="mx-auto flex max-w-[1440px] flex-col items-center justify-between gap-1 px-4 py-1.5 sm:flex-row">
           <p className="text-center">
-            Free shipping for H&amp;M Members on orders above ₹1,999 <span className="mx-1 text-neutral-400">|</span>
+            Free shipping for LINEA Members on orders above ₹1,999 <span className="mx-1 text-neutral-400">|</span>
             <span className="font-semibold text-[#E50010]">Flat 25% Off Selected Styles</span>
             <span className="mx-1 text-neutral-400">|</span> Estimated delivery: 2–5 days across India
           </p>
@@ -87,8 +87,8 @@ export default function Navbar() {
             </div>
           </div>
 
-          <Link href="/" aria-label="H&M India home" className="select-none text-center">
-            <span className="font-serif text-[40px] font-bold italic leading-none tracking-tighter text-[#E50010]">H&amp;M</span>
+          <Link href="/" aria-label="LINEA India home" className="select-none text-center">
+            <span className="text-[30px] font-light uppercase leading-none tracking-[0.35em] text-black">LINEA</span>
           </Link>
 
           <div className="flex items-center justify-end gap-4 text-[12px]">

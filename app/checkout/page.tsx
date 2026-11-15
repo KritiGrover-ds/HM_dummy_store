@@ -45,7 +45,7 @@ export default function CheckoutPage() {
   const tracked = useRef(false);
   const prefilled = useRef(false);
 
-  // Auto-fill from the signed-in H&M Member
+  // Auto-fill from the signed-in LINEA Member
   useEffect(() => {
     if (!user || prefilled.current) return;
     prefilled.current = true;
@@ -236,7 +236,7 @@ export default function CheckoutPage() {
           {isMember && (
             <label className="mt-4 flex cursor-pointer items-center gap-2 border-t border-neutral-200 pt-4 text-sm">
               <input type="checkbox" checked={applyMember} onChange={(e) => setApplyMember(e.target.checked)} className="accent-black" />
-              Apply H&amp;M Member promo ({MEMBER_PROMO_PERCENT}% off)
+              Apply LINEA Member promo ({MEMBER_PROMO_PERCENT}% off)
             </label>
           )}
 
@@ -246,7 +246,7 @@ export default function CheckoutPage() {
             <div className="flex justify-between"><dt>Delivery</dt><dd>{deliveryFee === 0 ? "Free" : formatINR(deliveryFee)}</dd></div>
             <div className="flex justify-between border-t border-neutral-200 pt-3 text-base font-semibold"><dt>Total</dt><dd>{formatINR(total)}</dd></div>
             <p className="text-[11px] text-neutral-500">Inclusive of GST</p>
-            {isMember && <p className="pt-1 text-xs text-emerald-700">You’ll earn {points} H&amp;M Member points</p>}
+            {isMember && <p className="pt-1 text-xs text-emerald-700">You’ll earn {points} LINEA Member points</p>}
           </dl>
 
           {error && <p className="mt-4 bg-[#fff1f1] p-3 text-xs text-[#b0000c]">{error}</p>}

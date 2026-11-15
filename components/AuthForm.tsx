@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 
-const DEMO_EMAIL = "member@hm.com";
+const DEMO_EMAIL = "member@linea.demo";
 const DEMO_PASSWORD = "hmindia2026";
 
 export default function AuthForm({ mode, next }: { mode: "login" | "register"; next: string }) {
@@ -56,7 +56,7 @@ export default function AuthForm({ mode, next }: { mode: "login" | "register"; n
 
   return (
     <div className="mx-auto max-w-md px-4 py-14">
-      <h1 className="text-center text-2xl font-semibold">{mode === "login" ? "Sign in" : "Become an H&M Member"}</h1>
+      <h1 className="text-center text-2xl font-semibold">{mode === "login" ? "Sign in" : "Become an LINEA Member"}</h1>
       <p className="mt-2 text-center text-sm text-neutral-600">
         {mode === "login"
           ? "Become a member — don’t miss out on deals, offers, discounts and bonus vouchers."
@@ -65,10 +65,10 @@ export default function AuthForm({ mode, next }: { mode: "login" | "register"; n
 
       <div className="mt-6 bg-[#faf9f8] p-4 text-sm">
         <p className="font-semibold">Demo account</p>
-        <p className="text-xs text-neutral-600">member@hm.com · hmindia2026</p>
+        <p className="text-xs text-neutral-600">member@linea.demo · hmindia2026</p>
         <div className="mt-3 flex gap-2">
           <button type="button" onClick={fillDemo} className="flex-1 border border-black px-3 py-2 text-xs font-semibold uppercase tracking-wider">
-            Fill Demo H&amp;M Member (member@hm.com)
+            Fill Demo LINEA Member (member@linea.demo)
           </button>
           {mode === "login" && (
             <button type="button" onClick={demoSignIn} disabled={busy} className="bg-black px-3 py-2 text-xs font-semibold uppercase tracking-wider text-white disabled:opacity-50">
